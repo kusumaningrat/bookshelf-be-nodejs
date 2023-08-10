@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-    res.send('test');
-});
+const routes = require('../routes');
+app.use(routes);
 
 module.exports = app;

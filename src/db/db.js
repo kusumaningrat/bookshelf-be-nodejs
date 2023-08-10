@@ -1,10 +1,10 @@
-const sequelize = require('../commons/database');
+const sequelize = require('../src/commons/database');
 
-const connect = async (options) => {
+const connect = async () => {
     sequelize.authenticate()
         .then(() => {
             console.log('Database Connected');
-            sequelize.sync({ ...options })
+            sequelize.sync({ force: true })
             .then(() => {
                 console.log('Database synced')
             })
