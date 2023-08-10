@@ -1,14 +1,20 @@
 const Url = {
     Api: {
         Category: '/category',
+        Book: '/book',
         Root: '/api/v1',
     }
 }
 const Error = {
+    CategoryEmpty: 'Category is empty',
     CategoryNotFound: 'Category not found',
+    BookEmpty: 'Book is empty',
+    BookNotFound: 'Book not found',
     SomethingWentWrong: 'Something Went Wrong',
     CategoryCannotBeNull: 'Category name cannot be null',
+    BookCannotBeNull: 'Book name cannot be null',
     CategoryAlreadyExist: 'Category already exist',
+    BookAlreadyExist: 'Book already exist',
 }
 
 const Message = {

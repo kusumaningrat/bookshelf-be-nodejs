@@ -1,19 +1,20 @@
-const { ifEmptyThrowError, ifNotEmptyThrowError } = require('../commons/check');
+const { ifEmptyThrowError, ifNotEmptyThrowError, isEmpty } = require('../commons/check');
 const { Error} = require('../commons/constants');
 const { RepackageError } = require('../commons/error');
 const Category = require('../models/category');
 
 const findAll = async () => {
     const result = await Category.findAll();
-    ifEmptyThrowError(result, Error.CategoryNotFound);
+    ifEmptyThrowError(result, Error.CategoryEmpty);
     return result;
 }
 
 const findOne = async (id) => {
+    const category = await Category.findByPk(id);
+    ifEmptyThrowError(category, Error.CategoryNotFound);
     try {
-        const result = await Category.findByPk(id);
-        ifEmptyThrowError(result, Error.CategoryNotFound);
-        return result;
+        const result = await Category.findOne({ where: { id }});
+        return result
     } catch (e) {
         RepackageError(e);
     }
@@ -21,7 +22,7 @@ const findOne = async (id) => {
 
 const create = async (data) => {
     const { category_name } = data;
-    ifEmptyThrowError(category_name,);
+    ifEmptyThrowError(category_name, Error.CategoryCannotBeNull);
     const check = await Category.findOne({ where: {category_name}});
     ifNotEmptyThrowError(check, Error.CategoryAlreadyExist);
     try {
@@ -36,9 +37,8 @@ const create = async (data) => {
 const update = async (id, data) => {
     const category = await Category.findByPk(id);
     ifEmptyThrowError(category, Error.CategoryNotFound);
-    const category_name = data;
     try {
-        const result = await category.update(category_name, { where: { id }});
+        const result = await category.update(data, { where: { id }});
         return result;
     } catch (e) {
         RepackageError(e);

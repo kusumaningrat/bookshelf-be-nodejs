@@ -7,6 +7,8 @@ const {
 
 const sequelize = require('../commons/database');
 
+const Book = require('./book');
+
 class Category extends Model {}
 
 Category.init(
@@ -28,6 +30,14 @@ Category.init(
         timestamps: false
     }
 );
+
+Category.hasMany(Book, {
+    foreignKey: 'category_id',
+    as: 'book'
+});
+Book.belongsTo(Category, {
+    foreignKey: 'category_id',
+})
 
 module.exports = Category;
 
