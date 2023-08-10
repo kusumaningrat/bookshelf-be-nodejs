@@ -2,6 +2,7 @@ const { ifEmptyThrowError, ifNotEmptyThrowError, isEmpty } = require('../commons
 const { Error} = require('../commons/constants');
 const { RepackageError } = require('../commons/error');
 const Category = require('../models/category');
+const Book = require('../models/book');
 
 const findAll = async () => {
     const result = await Category.findAll();
@@ -13,7 +14,15 @@ const findOne = async (id) => {
     const category = await Category.findByPk(id);
     ifEmptyThrowError(category, Error.CategoryNotFound);
     try {
-        const result = await Category.findOne({ where: { id }});
+        const result = await Category.findAll(
+            { where: { id },
+            include: [
+                {
+                    model: Book,
+                    as: 'book'
+                }
+            ]
+        });
         return result
     } catch (e) {
         RepackageError(e);
