@@ -11,5 +11,11 @@
         "name": "bookshelf",
         "user": "postgres",
         "password": "postgres"
+    },
+    "jwt": {
+        "private_key": "da0omade92jns"
+    },
+    "bcrypt": {
+        "salt": 10
     }
 }

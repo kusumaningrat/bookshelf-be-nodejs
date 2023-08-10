@@ -1,4 +1,6 @@
 const CustomError = require('./customError');
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
 function isEmpty(obj) {
     if (
@@ -26,8 +28,20 @@ function ifNotEmptyThrowError(responseError, errorMsg) {
     }
 }
 
+function validateToken(token) {
+    let payload = '';
+    try {
+        const TokenArray = token.split(' ');
+        payload = jwt.verify(TokenArray[1], config.get('jwt.private_key'));
+        return payload
+    } catch (e) {
+        return false
+    }
+}
+
 module.exports = {
     isEmpty,
     ifNotEmptyThrowError,
-    ifEmptyThrowError
+    ifEmptyThrowError,
+    validateToken
 }

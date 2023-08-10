@@ -4,7 +4,7 @@ function resBuilder(res, statusCode, message, data) {
         statusCode: statusCode.value,
         message,
         data
-    })
+    });
 }
 
 module.exports = resBuilder;

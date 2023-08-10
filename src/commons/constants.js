@@ -1,20 +1,29 @@
 const Url = {
     Api: {
+        Root: '/api/v1',
         Category: '/category',
         Book: '/book',
-        Root: '/api/v1',
+        User: '/user'
     }
+}
+
+const UserRoles = {
+    Admin: 'Admin',
+    User: 'User'
 }
 const Error = {
     CategoryEmpty: 'Category is empty',
     CategoryNotFound: 'Category not found',
     BookEmpty: 'Book is empty',
     BookNotFound: 'Book not found',
+    UserEmpty: 'User is empty',
+    UserNotFound: 'User not found',
     SomethingWentWrong: 'Something Went Wrong',
     CategoryCannotBeNull: 'Category name cannot be null',
     BookCannotBeNull: 'Book name cannot be null',
     CategoryAlreadyExist: 'Category already exist',
     BookAlreadyExist: 'Book already exist',
+    UserAlreadyExist: 'User already exist',
 }
 
 const Message = {
@@ -25,7 +34,7 @@ const Message = {
     'Logedin': 'Successfully logged in',
     'InternalServerError': 'Internal server error',
     'WrongPassword': 'Wrong password',
-    'Unauthorized': 'Forbidden Access',
+    'Unauthorized': 'Authorization Token is required',
     'Forbidden': 'Authorization Denied',
     'Conflict': 'Data Already Exists',
     'InvalidToken': 'Invalid Token',
@@ -47,6 +56,7 @@ const StatusCode = {
 module.exports = {
     Url,
     Error,
+    UserRoles,
     Message,
     StatusCode
 }
