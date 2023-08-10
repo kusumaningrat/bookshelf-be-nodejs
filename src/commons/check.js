@@ -14,14 +14,20 @@ function isEmpty(obj) {
         return false
     }
 }
-
 function ifEmptyThrowError(obj, errorMsg) {
     if (isEmpty(obj)) {
         throw new CustomError(errorMsg);
     }
 }
 
+function ifNotEmptyThrowError(responseError, errorMsg) {
+    if (!isEmpty(responseError)) {
+        throw new CustomError(errorMsg);
+    }
+}
+
 module.exports = {
     isEmpty,
+    ifNotEmptyThrowError,
     ifEmptyThrowError
 }

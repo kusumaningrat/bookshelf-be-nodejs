@@ -1,7 +1,7 @@
-function resBuilder(res, status, message, data) {
-    return res.status(status.code).send({
-        status: status.code,
-        status: status.value,
+function resBuilder(res, statusCode, message, data) {
+    return res.status(statusCode.code).send({
+        statusCode: statusCode.code,
+        statusCode: statusCode.value,
         message,
         data
     })

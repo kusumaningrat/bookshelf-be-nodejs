@@ -6,7 +6,9 @@ const Url = {
 }
 const Error = {
     CategoryNotFound: 'Category not found',
-    SomethingWentWrong: 'Something Went Wrong'
+    SomethingWentWrong: 'Something Went Wrong',
+    CategoryCannotBeNull: 'Category name cannot be null',
+    CategoryAlreadyExist: 'Category already exist',
 }
 
 const Message = {
