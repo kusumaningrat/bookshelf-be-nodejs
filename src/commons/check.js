@@ -28,6 +28,12 @@ function ifNotEmptyThrowError(responseError, errorMsg) {
     }
 }
 
+function ifFalseThrowError(flag, errorMsg) {
+    if (flag === false) {
+        throw new CustomError(errorMsg);
+    }
+}
+
 function validateToken(token) {
     let payload = '';
     try {
@@ -43,5 +49,6 @@ module.exports = {
     isEmpty,
     ifNotEmptyThrowError,
     ifEmptyThrowError,
+    ifFalseThrowError,
     validateToken
 }

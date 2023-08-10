@@ -1,6 +1,7 @@
 const Url = {
     Api: {
         Root: '/api/v1',
+        Auth: '/auth',
         Category: '/category',
         Book: '/book',
         User: '/user'
@@ -24,6 +25,8 @@ const Error = {
     CategoryAlreadyExist: 'Category already exist',
     BookAlreadyExist: 'Book already exist',
     UserAlreadyExist: 'User already exist',
+    UsernameRequired: 'Username is required',
+    PasswordRequired: 'Password is required',
 }
 
 const Message = {

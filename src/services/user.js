@@ -1,7 +1,9 @@
-const { ifEmptyThrowError, ifNotEmptyThrowError, isEmpty } = require('../commons/check');
+const jwt = require('jsonwebtoken');
+const { ifEmptyThrowError, ifNotEmptyThrowError, isEmpty, ifFalseThrowError } = require('../commons/check');
 const { Error} = require('../commons/constants');
 const { RepackageError } = require('../commons/error');
-const { hashPassword } = require('../commons/helper');
+const config = require('config');
+const { hashPassword, comparePassword } = require('../commons/helper');
 const User = require('../models/user');
 
 const findAll = async () => {
@@ -10,9 +12,9 @@ const findAll = async () => {
     return result;
 }
 
-const findOne = async (id) => {
-    const user = await User.findByPk(id);
-    ifEmptyThrowError(user, Error.UserNotFound);
+const findOne = async (params) => {
+    const { id } = params;
+    ifEmptyThrowError(id, Error.UserNotFound);
     try {
         const result = await User.findOne({ where: {id} });
         return result;
@@ -61,10 +63,33 @@ const destroy = async (id) => {
     }
 }
 
+const login = async (username, password) => {
+    try {
+        ifEmptyThrowError(username, Error.UsernameRequired);
+        ifEmptyThrowError(password, Error.PasswordRequired);
+        const user = await User.findOne({ where: { username }});
+        ifEmptyThrowError(user, Error.UserNotFound);
+        ifFalseThrowError(user.username === username && comparePassword(password, user.password), Error.UserNotFound);
+        const token = jwt.sign(
+            { 
+                id: user.id, 
+                password: user.password
+            },
+            config.get('jwt.private_key'), {
+                expiresIn: '30d'
+            }
+        );
+        return { token, username: user.username}
+    } catch (e) {
+        RepackageError(e)
+    }
+}
+
 module.exports = {
     findAll,
     findOne,
     create,
     update,
-    destroy
+    destroy,
+    login
 }

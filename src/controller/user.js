@@ -58,5 +58,5 @@ module.exports = {
         } catch (e) {
             ResponseWithError(res, e);
         }
-    }
+    },
 }
