@@ -35,7 +35,7 @@ function ifFalseThrowError(flag, errorMsg) {
 }
 
 function validateToken(token) {
-    let payload = '';
+    let payload;
     try {
         const TokenArray = token.split(' ');
         payload = jwt.verify(TokenArray[1], config.get('jwt.private_key'));

@@ -1,5 +1,5 @@
 const express = require('express');
-const { Url } = require('../commons/constants');
+const { Url, UserRoles } = require('../commons/constants');
 const categoryController = require('../controller/category');
 const bookController = require('../controller/book');
 const userController = require('../controller/user');
@@ -12,24 +12,100 @@ const router = express.Router();
 router.post(`${Url.Api.Auth}`, authController.login);
 
 /* Category */
-router.get(`${Url.Api.Category}`, authMiddleware.checkToken, categoryController.getAll);
-router.get(`${Url.Api.Category}/:id`, authMiddleware.checkToken, categoryController.getOne);
-router.post(`${Url.Api.Category}`, authMiddleware.checkToken, categoryController.create);
-router.put(`${Url.Api.Category}/:id`, authMiddleware.checkToken, categoryController.update);
-router.delete(`${Url.Api.Category}/:id`, authMiddleware.checkToken, categoryController.destroy);
+router.get(
+    `${Url.Api.Category}`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin), 
+    categoryController.getAll
+);
+
+router.get(
+    `${Url.Api.Category}/:id`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    categoryController.getOne
+);
+router.post(
+    `${Url.Api.Category}`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    categoryController.create
+);
+router.put(
+    `${Url.Api.Category}/:id`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    categoryController.update
+);
+router.delete(
+    `${Url.Api.Category}/:id`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    categoryController.destroy
+);
 
 /* Book */
-router.get(`${Url.Api.Book}`, authMiddleware.checkToken, bookController.getAll);
-router.get(`${Url.Api.Book}/:id`, authMiddleware.checkToken, bookController.getOne);
-router.post(`${Url.Api.Book}`, authMiddleware.checkToken, bookController.create);
-router.put(`${Url.Api.Book}/:id`, authMiddleware.checkToken, bookController.update);
-router.delete(`${Url.Api.Book}/:id`, authMiddleware.checkToken, bookController.destroy);
+router.get(
+    `${Url.Api.Book}`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    bookController.getAll
+);
+router.get(
+    `${Url.Api.Book}/:id`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    bookController.getOne
+);
+router.post(
+    `${Url.Api.Book}`, 
+    authMiddleware.checkToken,
+    authMiddleware.checkLevel(UserRoles.Admin),
+    bookController.create
+);
+router.put(
+    `${Url.Api.Book}/:id`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    bookController.update
+);
+router.delete(
+    `${Url.Api.Book}/:id`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    bookController.destroy
+);
 
 /* User */
-router.get(`${Url.Api.User}`, authMiddleware.checkToken, userController.getAll);
-router.get(`${Url.Api.User}/:id`, authMiddleware.checkToken, userController.getOne);
-router.post(`${Url.Api.User}`, authMiddleware.checkToken, userController.create);
-router.put(`${Url.Api.User}/:id`, authMiddleware.checkToken, userController.update);
-router.delete(`${Url.Api.User}/:id`, authMiddleware.checkToken, userController.destroy);
+router.get(
+    `${Url.Api.User}`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    userController.getAll
+);
+router.get(
+    `${Url.Api.User}/:id`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin), 
+    userController.getOne
+);
+router.post(
+    `${Url.Api.User}`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    userController.create
+);
+router.put(
+    `${Url.Api.User}/:id`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    userController.update
+);
+router.delete(
+    `${Url.Api.User}/:id`, 
+    authMiddleware.checkToken, 
+    authMiddleware.checkLevel(UserRoles.Admin),
+    userController.destroy
+);
 
 module.exports = router;

@@ -19,6 +19,7 @@ const Error = {
     BookNotFound: 'Book not found',
     UserEmpty: 'User is empty',
     UserNotFound: 'User not found',
+    PasswordWrong: 'Password is wrong',
     SomethingWentWrong: 'Something Went Wrong',
     CategoryCannotBeNull: 'Category name cannot be null',
     BookCannotBeNull: 'Book name cannot be null',

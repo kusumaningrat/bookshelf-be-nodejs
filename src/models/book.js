@@ -23,10 +23,6 @@ Book.init(
             type: STRING,
             allowNull: false
         },
-        published: {
-            type: BOOLEAN,
-            allowNull: false
-        },
         published_at: {
             type: DATE,
         },

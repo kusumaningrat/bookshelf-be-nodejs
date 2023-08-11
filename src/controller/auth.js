@@ -1,7 +1,7 @@
 const userService = require('../services/user');
 const { ResponseWithError } = require('../commons/error');
 const resBuilder = require('../commons/utils');
-const { StatusCode, Message } = require('../commons/constants');
+const { StatusCode, Message, Error } = require('../commons/constants');
 
 module.exports = {
     login: async (req, res, next) => {
