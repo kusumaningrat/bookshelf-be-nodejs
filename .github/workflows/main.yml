@@ -38,7 +38,7 @@ jobs:
 
    deploy-dev:
       runs-on: ubuntu-latest
-      if: github.ref == 'refs/heads/main'
+      if: github.ref == 'refs/heads/dev'
       steps:
          - name: Deplyoing to devserver
            uses: appleboy/ssh-action@v1.0.0
