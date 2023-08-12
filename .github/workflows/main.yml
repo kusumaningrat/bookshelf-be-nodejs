@@ -1,0 +1,15 @@
+name: 'Testing'
+run-name: ${{ github.actor }} is learning Github Actions
+on: [push]
+
+jobs:
+    install-nodemon:
+        runs-on: ubuntu:latest
+        steps:
+            - uses: actions/checkout@v3
+            - uses: actions/node@v3
+              with:
+                node-version: '14'
+            - run: npm install nodemon
+            - run: nodemon -v
+

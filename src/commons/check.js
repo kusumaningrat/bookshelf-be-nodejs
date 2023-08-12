@@ -17,7 +17,7 @@ function isEmpty(obj) {
     }
 }
 function ifEmptyThrowError(obj, errorMsg) {
-    if (isEmpty(obj)) {
+    if (obj === null && obj === undefined) {
         throw new CustomError(errorMsg);
     }
 }
