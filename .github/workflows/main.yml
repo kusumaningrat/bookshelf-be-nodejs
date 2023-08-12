@@ -26,8 +26,8 @@ jobs:
          - name: Create a tag
            id: tag
            run: |
-            echo " name=date::$(date +'%Y-%m-%d')" >> $GITHUB_ENV
-            echo " name=tag::${{ github.run_id }}'" >> $GITHUB_ENV
+            echo "::set-ouput name=date::$(date +'%Y-%m-%d')"
+            echo "::set-output name=tag::${{ github.run_id }}'"
 
          - name: Build and Push Image
            uses: docker/build-push-action@v2
