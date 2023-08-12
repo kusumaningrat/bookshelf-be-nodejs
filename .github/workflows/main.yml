@@ -9,7 +9,7 @@ on:
 jobs:
    dev:
       runs-on: ubuntu-latest
-      if: github.repository == 'refs/heads/dev'
+      if: github.repository == 'dev'
       steps:
          - uses: actions/checkout@v3
          - uses: actions/setup-node@v3
@@ -19,7 +19,7 @@ jobs:
       
    main:
       runs-on: ubuntu-latest
-      if: github.repository == 'refs/heads/main'
+      if: github.repository == 'main'
       steps:
          - uses: actions/checkout@v3
          - uses: actions/setup-node@v3
