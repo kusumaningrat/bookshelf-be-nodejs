@@ -27,7 +27,7 @@ jobs:
            id: tag
            run: |
             echo "::set-ouput name=date::$(date + '%Y-%m-%d')"
-            echo "::set-output name=tag::${{ github.run_id }}')"
+            echo "::set-output name=tag::${{ github.run_id }}'"
 
          - name: Build and Push Image
            uses: docker/build-push-action@v2
