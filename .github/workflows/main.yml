@@ -1,14 +1,29 @@
 name: 'Testing'
 run-name: ${{ github.actor }} is learning Github Actions
-on: [push]
+on: 
+ push:
+    branches:
+        - dev
+        - main
 
 jobs:
-    install-nodemon:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v3
-            - uses: actions/setup-node@v3
-              with:
-                node-version: '14'
-            - run: npm install nodemon
+   dev:
+      runs-on: ubuntu-latest
+      if: github.repository == 'refs/heads/dev'
+      steps:
+         - uses: actions/checkout@v3
+         - uses: actions/setup-node@v3
+           with:
+               node-version: '14'
+         - run: npm install nodemon
+      
+   main:
+      runs-on: ubuntu-latest
+      if: github.repository == 'refs/heads/main'
+      steps:
+         - uses: actions/checkout@v3
+         - uses: actions/setup-node@v3
+           with:
+            node-version: '14'
+         - run: npm install
 
