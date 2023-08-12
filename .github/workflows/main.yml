@@ -23,15 +23,15 @@ jobs:
                username: ${{ secrets.HUB_USERNAME }}
                password: ${{ secrets.HUB_PASSWORD }}
 
-         - name: Build and Push Image
-           id: date
-           run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+         - name: Get the id
+           id: run
+           run: echo "::set-output name=run_id::${{ github.run_id }}')"
 
          - name: Build and Push Image
            uses: docker/build-push-action@v2
            with:
             context: .
-            tags: kusumaningrat16/bookshelf-be-nodejs:dev-${{ steps.date.outputs.date }}
+            tags: kusumaningrat16/bookshelf-be-nodejs:dev-${{ steps.run.outputs.run_id }}
 
          
       
