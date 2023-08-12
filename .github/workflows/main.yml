@@ -1,5 +1,5 @@
-name: 'Testing'
-run-name: ${{ github.actor }} is learning Github Actions
+name: 'Docker NodeJS CI/CD'
+run-name: Nodejs CI/CD
 on: 
  push:
     branches:
@@ -35,6 +35,18 @@ jobs:
             context: .
             push: true
             tags: kusumaningrat16/bookshelf-be-nodejs:dev-${{ steps.tag.outputs.date }}-${{ steps.tag.outputs.tag }}
+
+   deploy-dev:
+      runs-on: ubuntu-latest
+      if: github.ref == 'refs/heads/main'
+      steps:
+         - name: Deplyoing to devserver
+           uses: appleboy/ssh-action@v1.0.0
+           with:
+            host: ${{ secrets.HOST }}
+            username: ${{ secrets.USERNAME }}
+            password: ${{ secrets.PASSWORD }}
+            script: whoami
 
    main:
       runs-on: ubuntu-latest
