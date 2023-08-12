@@ -26,15 +26,15 @@ jobs:
          - name: Create a tag
            id: tag
            run: |
-            echo "::set-ouput name=date::$(date + '%Y-%m-%d')"
-            echo "::set-output name=tag::${{ github.run_id }}'"
+            echo " name=date::$(date + '%Y-%m-%d')" >> $GITHUB_ENV
+            echo " name=tag::${{ github.run_id }}'" >> $GITHUB_ENV
 
          - name: Build and Push Image
            uses: docker/build-push-action@v2
            with:
             context: .
             push: true
-            tags: kusumaningrat16/bookshelf-be-nodejs:dev-${{ steps.tag.outputs.date }}-${{ steps.tag.outputs.tag }}
+            tags: kusumaningrat16/bookshelf-be-nodejs:dev-${{ steps.tag.outputs.date }}${{ steps.tag.outputs.tag }}
 
    main:
       runs-on: ubuntu-latest
