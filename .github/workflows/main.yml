@@ -46,7 +46,9 @@ jobs:
             host: ${{ secrets.HOST }}
             username: ${{ secrets.USERNAME }}
             password: ${{ secrets.PASSWORD }}
-            script: whoami
+            command_timeout: 30m
+            script: |
+               echo "testing"
 
    main:
       runs-on: ubuntu-latest
