@@ -47,7 +47,7 @@ jobs:
             USER: ${{ secrets.USERNAME}}
             SSHKEY: ${{ secrets.PRIVATE_KEY }}
          
-         - run: ssh dev-app@lms.castellumdigital.org ls --help
+         - run: ssh devops@192.168.10.10 ls --help
 
    main:
       runs-on: ubuntu-latest
