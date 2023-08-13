@@ -41,14 +41,13 @@ jobs:
       if: github.ref == 'refs/heads/dev'
       steps:
          - name: Deplyoing to devserver
-           uses: appleboy/ssh-action@v1.0.0
+           uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
            with:
-            host: ${{ secrets.HOST }}
-            username: ${{ secrets.USERNAME }}
-            key: ${{ secrets.PRIVATE_KEY }}
-            command_timeout: 30m
-            script: |
-               cd /home/devops && pwd
+            ORIGIN: ${{ secrets.HOST }}
+            USER: ${{ secrets.USERNAME}}
+            SSHKEY: ${{ secrets.PRIVATE_KEY }}
+         
+         - run: ssh devops@192.168.10.1 ls --help
 
    main:
       runs-on: ubuntu-latest
