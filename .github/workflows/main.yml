@@ -46,8 +46,7 @@ jobs:
             ORIGIN: ${{ secrets.HOST }}
             USER: ${{ secrets.USERNAME}}
             SSHKEY: ${{ secrets.PRIVATE_KEY }}
-         
-         - run: ssh devops@192.168.10.10 ls --help
+         - run: ssh dev-app@lms.castellumdigital.org ls --help
 
    main:
       runs-on: ubuntu-latest
