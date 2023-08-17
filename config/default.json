@@ -6,14 +6,14 @@
         "port": "3000"
     },
     "database": {
-        "host": "postgresql-service",
+        "host": "localhost",
         "port": "5432",
         "name": "bookshelf",
         "user": "postgres",
         "password": "postgres"
     },
     "jwt": {
-        "private_key": "da0omade92jns"
+        "private_key": "wasadedas"
     },
     "bcrypt": {
         "salt": 10

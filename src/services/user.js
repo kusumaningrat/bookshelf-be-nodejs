@@ -68,6 +68,7 @@ const login = async (username, password) => {
         ifEmptyThrowError(username, Error.UsernameRequired);
         ifEmptyThrowError(password, Error.PasswordRequired);
         const user = await User.findOne({ where: { username }});
+        console.log("User", user)
         ifEmptyThrowError(user, Error.UserNotFound);
         ifFalseThrowError(user.username === username && comparePassword(password, user.password), Error.UserNotFound);
         const token = jwt.sign(
