@@ -86,25 +86,21 @@ router.get(
 router.get(
     `${Url.Api.User}/:id`, 
     authMiddleware.checkToken, 
-    authMiddleware.checkLevel(UserRoles.Admin), 
     userController.getOne
 );
 router.post(
     `${Url.Api.User}`, 
     authMiddleware.checkToken, 
-    authMiddleware.checkLevel(UserRoles.Admin),
     userController.create
 );
 router.put(
     `${Url.Api.User}/:id`, 
     authMiddleware.checkToken, 
-    authMiddleware.checkLevel(UserRoles.Admin),
     userController.update
 );
 router.delete(
     `${Url.Api.User}/:id`, 
     authMiddleware.checkToken, 
-    authMiddleware.checkLevel(UserRoles.Admin),
     userController.destroy
 );
 
