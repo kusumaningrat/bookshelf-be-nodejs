@@ -4,7 +4,6 @@ networks:
   bookshelf:
     driver: bridge
 
-
 services:
 
   database:
