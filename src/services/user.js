@@ -12,12 +12,12 @@ const findAll = async () => {
     return result;
 }
 
-const findOne = async (params) => {
-    const { id } = params;
-    ifEmptyThrowError(id, Error.UserNotFound);
+const findOne = async (id) => {
+    const user = await User.findByPk(id);
+    ifEmptyThrowError(user, Error.BookNotFound);
     try {
         const result = await User.findOne({ where: {id} });
-        return result;
+        return result
     } catch (e) {
         RepackageError(e);
     }
@@ -68,7 +68,6 @@ const login = async (username, password) => {
         ifEmptyThrowError(username, Error.UsernameRequired);
         ifEmptyThrowError(password, Error.PasswordRequired);
         const user = await User.findOne({ where: { username }});
-        console.log("User", user)
         ifEmptyThrowError(user, Error.UserNotFound);
         ifFalseThrowError(user.username === username && comparePassword(password, user.password), Error.UserNotFound);
         const token = jwt.sign(
@@ -80,7 +79,7 @@ const login = async (username, password) => {
                 expiresIn: '30d'
             }
         );
-        return { token, username: user.username}
+        return { token, username };
     } catch (e) {
         RepackageError(e)
     }
