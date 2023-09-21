@@ -1,0 +1,147 @@
+{
+	"info": {
+		"_postman_id": "34508bf1-68da-44a7-a2a3-78db74a592d3",
+		"name": "Book",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27172377"
+	},
+	"item": [
+		{
+			"name": "GetAll",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{AuthToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/book/",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"book",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOne",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{AuthToken}}",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{endpoint}}/book/1",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"book",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"book_name\": \"Harry Potter6\",\r\n    \"author\": \"James H. Alex\",\r\n    \"published\": false,\r\n    \"category_id\": 5    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/book/2",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"book",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Destroy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/book/2",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"book",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Post",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{AuthToken}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"book_name\": \"Harry Potter3\",\r\n    \"author\": \"James H. Alex\",\r\n    \"published_at\": \"2023-08-11\",\r\n    \"category_id\": 1    \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{endpoint}}/book",
+					"host": [
+						"{{endpoint}}"
+					],
+					"path": [
+						"book"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
